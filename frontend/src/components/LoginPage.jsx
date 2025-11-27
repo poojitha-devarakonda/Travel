@@ -43,7 +43,7 @@ const Login = () => {
     <div className="login-container">
       <div className="left-section">
         <img
-          src="/Frame 227.png"
+          src="/Frame_227.png"
           alt="Travel Illustration"
           className="illustration"
         />

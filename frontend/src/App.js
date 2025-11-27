@@ -30,6 +30,7 @@ function App() {
         <Route path="/preference" element={<Preference />} />
         <Route element={<Layout />}>
           <Route path="home" element={<Home />} />
+          <Route path="home/:id" element={<Home />} />
           <Route path="MyTrip" element={<MyTrips />} />
           <Route path="memories" element={<Memories />} />
           <Route path="journal" element={<Journal />} />

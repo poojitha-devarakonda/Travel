@@ -1,78 +1,181 @@
-.my-trips-container {
+/* .my-trips-container {
   min-height: 100vh;
   padding: 50px 20px;
-  background: linear-gradient(135deg, #e0f7fa, #fff);
+  background: linear-gradient(135deg, #f8fbff, #ffffff);
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
   font-family: 'Poppins', sans-serif;
 }
 
 .my-trips-container h2 {
-  font-size: 2rem;
-  color: #2e8b57;
-  margin-bottom: 30px;
-  font-weight: 600;
+  font-size: 2.2rem;
+  color: #00796b;
+  margin-bottom: 40px;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
 }
 
 .trips-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1100px;
+  justify-items: center;
 }
 
-.trip-card {
-  background: white;
-  border-radius: 15px;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-align: left;
+/* Polaroid card */
+.polaroid-card {
+  background: #fff;
+  border: 3px solid #f2f2f2;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  width: 270px;
+  transition: all 0.3s ease;
   position: relative;
+  overflow: hidden;
+  text-align: center;
+  backdrop-filter: blur(3px);
 }
 
-.trip-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+.polaroid-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
 }
 
-.trip-card h3 {
+
+/* Map-style pin (dart) */
+/* Make the dart pin look real */
+.map-pin {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%) rotate(8deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 3;
+}
+
+.pin-head {
+  width: 18px;
+  height: 18px;
+  background-color: #e53935;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4); /* gives that “pressed in” look */
+}
+
+.pin-stick {
+  width: 2px;
+  height: 40px;
+  background-color: #333;
+  transform: rotate(12deg);
+  margin-top: -2px;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.3)); /* pin stick shadow */
+}
+
+
+/* Content */
+.polaroid-content {
+  background: rgba(255, 255, 255, 0.85);
+  margin: 100px 10px 15px 10px;
+  padding: 15px 10px 25px 10px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.polaroid-content h3 {
   font-size: 1.3rem;
-  color: #2e8b57;
-  margin-bottom: 10px;
+  font-weight: 600;
+  color: #00796b;
+  margin-bottom: 5px;
 }
 
-.trip-card p {
-  margin: 5px 0;
+.trip-info, .trip-dates, .trip-budget {
   color: #333;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  margin: 4px 0;
 }
 
+.trip-budget {
+  font-weight: 600;
+  color: #004d40;
+}
+
+/* Button */
 .view-details-btn {
-  margin-top: 15px;
-  background-color: #2e8b57;
+  margin-top: 12px;
+  background-color: #00796b;
   color: white;
   border: none;
-  padding: 8px 15px;
-  border-radius: 8px;
+  padding: 8px 16px;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 0.9rem;
-  transition: all 0.3s ease;
-  display: block;
-  width: fit-content;
+  transition: 0.3s ease;
 }
 
 .view-details-btn:hover {
-  background-color: #256b45;
+  background-color: #005b4f;
   transform: scale(1.05);
 }
 
-.my-trips-container p {
-  color: #666;
-  font-size: 1rem;
+/* Loading */
+.loading-trips {
+  font-size: 1.1rem;
+  color: #00796b;
+  text-align: center;
+  margin-top: 40px;
+} 
+/* Centered 📌 emoji */
+.map-emoji {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  font-size: 2.5rem;
+  z-index: 3;
+  animation: pulse 1.8s infinite ease-in-out;
+}
+
+/* Buttons */
+.view-details-btn, .delete-btn {
+  flex: 1;
+  margin: 0 5px;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.view-details-btn {
+  background-color: #00796b;
+  color: white;
+}
+
+.view-details-btn:hover {
+  background-color: #005b4f;
+}
+
+.delete-btn {
+  background-color: #e53935;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #c62828;
+}
+/* Grid layout to make cards appear side by side */
+.trips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  width: 100%;
+  max-width: 1100px;
+  justify-items: center;
+  margin-top: 30px;
 }

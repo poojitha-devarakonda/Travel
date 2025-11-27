@@ -1,7 +1,7 @@
 /* Full-page background image */
 .landing-container {
   background: url("/src/landing.jpg") no-repeat center center/cover;
-  height: 100vh;
+  height: 115vh;
   width: 100%;
   display: flex;
   justify-content: center;

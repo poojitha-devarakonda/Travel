@@ -121,3 +121,22 @@
 .save-note-btn:hover {
   background-color: #ff5a7a;
 }
+.note-preview-card {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-note-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px;
+  color: #777;
+}
+
+.delete-note-btn:hover {
+  color: #d9534f;
+}

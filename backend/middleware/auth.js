@@ -4,6 +4,8 @@ require("dotenv").config();
 
 const auth = async (req, res, next) => {
   const authHeader = req.headers.authorization;
+  console.log("🔍 Incoming Authorization Header:", authHeader);
+
 
   // ✅ Check if token exists
   if (!authHeader || !authHeader.startsWith("Bearer ")) {

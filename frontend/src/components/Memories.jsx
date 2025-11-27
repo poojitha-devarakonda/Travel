@@ -9,9 +9,17 @@ const Memories = () => {
   const [selectedAlbum, setSelectedAlbum] = useState(null);
 
   useEffect(() => {
-    const savedAlbums = localStorage.getItem("albums");
-    if (savedAlbums) setAlbums(JSON.parse(savedAlbums));
-  }, []);
+  const loadAlbums = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/memories");
+      const data = await res.json();
+      setAlbums(data);
+    } catch (err) {
+      console.error("Failed to load albums:", err);
+    }
+  };
+  loadAlbums();
+}, []);
 
   const updateAlbums = (updatedAlbums, updatedSelectedAlbum = null) => {
     setAlbums(updatedAlbums);
@@ -19,58 +27,61 @@ const Memories = () => {
     if (updatedSelectedAlbum) setSelectedAlbum(updatedSelectedAlbum);
   };
 
-  const addAlbum = () => {
+  const addAlbum =async () => {
     if (!newAlbum.trim()) return;
-    const newEntry = { name: newAlbum, location, description, images: [] };
-    updateAlbums([...albums, newEntry]);
-    setNewAlbum("");
-    setLocation("");
-    setDescription("");
+    const res = await fetch("http://localhost:5000/api/memories", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: newAlbum, location, description }),
+      });
+    const created = await res.json();
+    setAlbums([...albums, created]);
   };
 
-  const deleteAlbum = (name) => {
-    if (!window.confirm(`Delete album "${name}"?`)) return;
-    const updated = albums.filter((a) => a.name !== name);
-    updateAlbums(updated, selectedAlbum?.name === name ? null : selectedAlbum);
-  };
+  const deleteAlbum = async (id) => {
+  if (!window.confirm("Delete this album?")) return;
+
+  await fetch(`http://localhost:5000/api/memories/${id}`, {
+    method: "DELETE"
+  });
+
+  const updated = albums.filter((a) => a._id !== id);
+  setAlbums(updated);
+  if (selectedAlbum?._id === id) setSelectedAlbum(null);
+};
+
 
   const handleImageUpload = async (e) => {
     const files = Array.from(e.target.files);
 
-    const base64Images = await Promise.all(
-      files.map(
-        (file) =>
-          new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onloadend = () => resolve(reader.result);
-            reader.onerror = reject;
-            reader.readAsDataURL(file);
-          })
-      )
-    );
+   const formData = new FormData();
+   files.forEach(file => formData.append("images", file));
 
-    const updatedAlbums = albums.map((album) =>
-      album.name === selectedAlbum.name
-        ? { ...album, images: [...album.images, ...base64Images] }
-        : album
-    );
+  const res = await fetch(`http://localhost:5000/api/memories/${selectedAlbum._id}/upload`, {
+    method: "PUT",
+    body: formData,
+});
 
-    const updatedSelectedAlbum = {
-      ...selectedAlbum,
-      images: [...selectedAlbum.images, ...base64Images],
-    };
+const updated = await res.json();
+setSelectedAlbum(updated);
+setAlbums(albums.map(a => (a._id === updated._id ? updated : a)));
 
-    updateAlbums(updatedAlbums, updatedSelectedAlbum);
   };
 
-  const deletePhoto = (index) => {
+  const deletePhoto = async(index) => {
     if (!window.confirm("Delete this photo?")) return;
     const updatedImages = selectedAlbum.images.filter((_, i) => i !== index);
-    const updatedAlbums = albums.map((a) =>
-      a.name === selectedAlbum.name ? { ...a, images: updatedImages } : a
-    );
-    const updatedSelectedAlbum = { ...selectedAlbum, images: updatedImages };
-    updateAlbums(updatedAlbums, updatedSelectedAlbum);
+
+      const res = await fetch(`http://localhost:5000/api/memories/${selectedAlbum._id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...selectedAlbum, images: updatedImages }),
+      });
+
+      const updated = await res.json();
+      setSelectedAlbum(updated);
+      setAlbums(albums.map(a => (a._id === updated._id ? updated : a)));
+
   };
 
   const goBack = () => setSelectedAlbum(null);
@@ -113,10 +124,11 @@ const Memories = () => {
                 >
                   {album.images[0] ? (
                     <img
-                      src={album.images[0]}
+                      src={`http://localhost:5000${album.images[0]}`}
                       alt={album.name}
                       className="album-cover"
                     />
+
                   ) : (
                     <div className="album-placeholder">📷</div>
                   )}
@@ -125,11 +137,12 @@ const Memories = () => {
                   {album.description && <p className="album-description">{album.description}</p>}
                 </div>
                 <button
-                  className="delete-album-btn"
-                  onClick={() => deleteAlbum(album.name)}
-                >
-                  🗑 Delete
-                </button>
+                    className="delete-album-btn"
+                    onClick={() => deleteAlbum(album._id)}
+                  >
+                    🗑 Delete
+                  </button>
+
               </div>
             ))}
           </div>
@@ -159,7 +172,7 @@ const Memories = () => {
             {selectedAlbum.images.length > 0 ? (
               selectedAlbum.images.map((img, i) => (
                 <div key={i} className="photo-card">
-                  <img src={img} alt={`memory-${i}`} />
+                   <img src={`http://localhost:5000${img}`} alt={`memory-${i}`} />
                   <button
                     className="delete-photo-btn"
                     onClick={() => deletePhoto(i)}

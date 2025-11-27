@@ -16,7 +16,7 @@
   padding: 20px 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* pushes logout to bottom */
+  justify-content: flex-start; /* pushes logout to bottom */
   position: fixed;
   top: 0;
   left: 0;
@@ -28,7 +28,7 @@
   align-items: center;
   justify-content: center; /* centers both horizontally */
   gap: 10px; /* space between image and text */
-  margin-bottom: 80px;
+  margin-bottom: 30px;
 }
 
 .logo-img {
@@ -50,10 +50,13 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  top: 30px;
+  gap:8px;
 }
 
 .nav-list li {
-  padding: 12px 20px;
+  padding: 16px 20px;
+  margin-bottom: 10px;
 }
 
 .nav-list li a {
@@ -82,13 +85,13 @@
   overflow-y: auto;
   box-sizing: border-box;
 }
-.nav-wrapper {
+/* .nav-wrapper {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* centers nav items vertically */
+  justify-content: center; 
   margin-top: 30px;
-}
+   } */
 .logout-item {
   border: none;
   background: none;
@@ -105,4 +108,11 @@
 .logout-item:hover {
   background-color: #d0e8e6;
   color: #00796b;
+}
+.nav-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;   /* move nav items UP */
+  padding-top: 10px;             /* adjust as you like */
 }

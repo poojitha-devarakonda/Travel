@@ -39,7 +39,8 @@
   justify-content: center;
   /* ❌ Remove background color */
   background: transparent;
-  padding: 2rem;
+  padding: -10%;
+  left: 100%;;
 }
 
 /* ===== Form Container ===== */
@@ -74,7 +75,7 @@
 }
 
 .input-box {
-  width: 100%;
+  width: 70%;
   padding: 0.6rem;
   border-radius: 0.5rem;
   border: none;
@@ -91,13 +92,13 @@
 /* Forgot Password */
 .forgot-link {
   text-align: right;
-  margin-top: 0.3rem;
-  background: none; /* ✅ remove box */
+  margin-top: 0.6rem;
+  background: transparent; /* ✅ remove box */
   box-shadow: none; 
 }
 
-.forgot-link a {
-  font-size: 0.8rem;
+.forgot-btn{
+  font-size: 0.9rem;
   color: #fefefe;
   text-decoration: underline;
   background: none; /* ✅ remove background */
@@ -107,7 +108,7 @@
 
 /* ===== Login Button ===== */
 .login-btn {
-  width: 100%;
+  width: 70%;
   padding: 0.8rem;
   background-color: rgba(7, 94, 99, 0.9); /* Transparent teal */
   border: none;

@@ -1,4 +1,4 @@
-.budget-container {
+/* .budget-container {
   padding: 20px;
   font-family: Arial, sans-serif;
 }
@@ -11,4 +11,84 @@
 .budget-container p {
   font-size: 16px;
   color: #666;
+} */
+/* 
+.budget-page-container {
+  padding: 20px;
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+}
+
+/* 🔥 White card background for the whole budget page */
+.budget-card-wrapper {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.10);
+  margin-top: 20px;
+}
+
+/* Header */
+.budget-header-block h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.budget-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* Summary Cards */
+.budget-cards {
+  margin-top: 25px;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.budget-card {
+  background: #ffffff;
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.budget-card h3 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+.value {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* Per Day Section */
+.per-day-section {
+  margin-top: 40px;
+}
+
+.days-list {
+  margin-top: 15px;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.day-card {
+  background: #fff;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+}
+
+.day-card h4 {
+  margin: 0 0 6px 0;
 }

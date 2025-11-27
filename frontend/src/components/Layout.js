@@ -19,30 +19,32 @@ const Layout = () => {
           <img src="/LOGO.jpg" alt="logo" className="logo-img" />
           <span className="logo-text">TravelZen AI</span>
         </div>
-        <ul className="nav-list">
-          <li>
-            <NavLink to="/home">Home</NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink to="/MyTrip">My Trips</NavLink>
-          </li>
-          <li>
-            <NavLink to="/memories">Memories</NavLink>
-          </li>
-          <li>
-            <NavLink to="/journal">Journal</NavLink>
-          </li>
-          <li>
-            <NavLink to="/budget">Budget</NavLink>
-          </li>
-          <li>
-            <NavLink to="/profile">Profile</NavLink>
-          </li>
-          <li>
-            <NavLink to="/editpreferences">Edit Preferences</NavLink>
-          </li>
-         </ul>
-            <button onClick={handleLogout} className="nav-item logout-item" >Logout</button>    
+        <div className="nav-wrapper">
+          <ul className="nav-list">
+            <li>
+              <NavLink to="/home">Home</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink to="/MyTrip">My Trips</NavLink>
+            </li>
+            <li>
+              <NavLink to="/memories">Memories</NavLink>
+            </li>
+            <li>
+              <NavLink to="/journal">Journal</NavLink>
+            </li>
+            <li>
+              <NavLink to="/budget">Budget</NavLink>
+            </li>
+            <li>
+              <NavLink to="/profile">Profile</NavLink>
+            </li>
+            <li>
+              <NavLink to="/editpreferences">Edit Preferences</NavLink>
+            </li>
+          </ul>
+              <button onClick={handleLogout} className="nav-item logout-item" >Logout</button>
+        </div>    
       </aside>
 
       <main className="app-main">

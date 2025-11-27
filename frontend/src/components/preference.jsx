@@ -33,7 +33,7 @@ export default function Preference() {
         tripDetails: location.state?.tripDetails || {},
       });
 
-      alert("Preferences saved successfully!");
+      //alert("Preferences saved successfully!");
 
       // ✅ Navigate to next page (keep your existing flow)
       navigate("/home", {

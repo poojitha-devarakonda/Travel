@@ -34,22 +34,27 @@ export default function TripDetails() {
     }
 
     try {
-      // ✅ Send data to backend
-      const response = await API.post("/trips", {
-        destinations,
-        startDate,
-        endDate,
-        budget: Number(budget),
-        personalBudget: savePersonal ? Number(personalBudget) : 0,
-      });
+      const token = localStorage.getItem("token"); // ✅ Get user token
+
+      const response = await API.post(
+        "/trips",
+        {
+          destinations,
+          startDate,
+          endDate,
+          budget: Number(budget),
+          personalBudget: savePersonal ? Number(personalBudget) : 0,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // ✅ Attach token
+          },
+        }
+      );
 
       if (response.status === 201 || response.status === 200) {
-      // alert("Trip details saved successfully!");
-        // Pass saved trip data to next page
         navigate("/preference", {
-          state: {
-            tripDetails: response.data,
-          },
+          state: { tripDetails: response.data },
         });
       } else {
         alert("Failed to save trip details. Please try again.");
@@ -58,7 +63,7 @@ export default function TripDetails() {
       console.error("Error saving trip:", error);
       alert("Error saving trip details. Please check the console.");
     }
-  };
+  }; // ✅ Properly close handleNext here!
 
   return (
     <div className="trip-container">
