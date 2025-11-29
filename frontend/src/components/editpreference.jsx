@@ -363,7 +363,10 @@ const EditPreference = () => {
           <div className="form-group">
             <label>Who are Going</label>
             <select name="groupType" value={formData.groupType} onChange={handleChange}>
-              <option value="">Select Preference</option>
+              <option value="" disabled hidden>
+                Select Preference
+              </option>
+              {/* <option value="">Select Preference</option> */}
               <option value="solo">Solo Traveler</option>
               <option value="couple">Couple</option>
               <option value="friends">Friends Group</option>
@@ -375,7 +378,10 @@ const EditPreference = () => {
           <div className="form-group">
             <label>Trip Type</label>
             <select name="tripType" value={formData.tripType} onChange={handleChange}>
-              <option value="">Select Preference</option>
+              <option value="" disabled hidden>
+                Select Preference
+              </option>
+              {/* <option value="">Select Preference</option> */}
               <option value="adventure">Adventure</option>
               <option value="romantic">Romantic</option>
               <option value="relaxation">Relaxation</option>
@@ -398,7 +404,10 @@ const EditPreference = () => {
               value={formData.transportation}
               onChange={handleChange}
             >
-              <option value="">Select Preference</option>
+              <option value="" disabled hidden>
+                Select Preference
+              </option>
+              {/* <option value="">Select Preference</option> */}
               <option value="flight">Flight</option>
               <option value="train">Train</option>
               <option value="bus">Bus</option>
@@ -415,7 +424,10 @@ const EditPreference = () => {
               value={formData.accommodation}
               onChange={handleChange}
             >
-              <option value="">Select Preference</option>
+              <option value="" disabled hidden>
+                Select Preference
+              </option>
+              {/* <option value="">Select Preference</option> */}
               <option value="budget-hotel">Budget Hotel</option>
               <option value="midrange-hotel">Mid-range Hotel</option>
               <option value="luxury-hotel">Luxury Hotel</option>

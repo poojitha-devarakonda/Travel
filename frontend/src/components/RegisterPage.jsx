@@ -37,7 +37,7 @@ const RegisterPage = () => {
       {/* Left Section - Illustration */}
       <div className="left-section">
         <img
-          src="/Frame 228.png" // Ensure this image is in the public folder
+          src="/Frame_228.png" // Ensure this image is in the public folder
           alt="Register Illustration"
           className="illustration"
         />

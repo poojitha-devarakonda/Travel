@@ -201,7 +201,7 @@ const MyTrips = () => {
                   {trip.itineraryId ? (
                     <button
                       className="view-details-btn"
-                      onClick={() => navigate(`/home/${trip.itineraryId}`)}
+                      onClick={() => navigate(`/MyTrips/${trip.itineraryId}`)}
                     >
                       👁 View
                     </button>

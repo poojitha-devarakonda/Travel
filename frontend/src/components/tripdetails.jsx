@@ -92,11 +92,11 @@ export default function TripDetails() {
                   handleChangeDestination(index, "to", e.target.value)
                 }
               />
-              {index === destinations.length - 1 && (
-                <button className="add-btn" onClick={addDestination}>
-                  +
-                </button>
-              )}
+              {/* {index === destinations.length - 1 && (
+                // <button className="add-btn" onClick={addDestination}>
+                //   +
+                // </button>
+              )} */}
             </div>
           ))}
         </div>

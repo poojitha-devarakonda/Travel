@@ -1,3 +1,169 @@
+/* ===== Global Layout =====
+.login-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background: url('/src/background.jpg') no-repeat center center/cover;
+  font-family: 'Arial', sans-serif;
+}
+
+/* ===== Left Section ===== *
+.left-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.illustration {
+  max-width: 85%;
+  height: auto;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Floating animation for illustration *
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* ===== Right Section ===== *
+.right-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* ❌ Remove background color *
+  background: transparent;
+  padding: -10%;
+  left: 100%;;
+}
+
+/* ===== Form Container ===== *
+.form-container {
+  width: 90%;
+  max-width: 400px;
+  padding: 2rem;
+  border-radius: 12px;
+  background: none;   /* ❌ remove background *
+  box-shadow: none;   /* ❌ remove shadow *
+  color: #f0f0f0;    
+}
+
+.form-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* ===== Input Fields ===== *
+.input-group {
+  margin-bottom: 1rem;
+}
+
+.input-group label {
+  display: block;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #f0f0f0;
+}
+
+.input-box {
+  width: 70%;
+  padding: 0.6rem;
+  border-radius: 0.5rem;
+  border: none;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.25); /* Slight transparency *
+  color: white;
+  font-size: 0.95rem;
+}
+
+.input-box::placeholder {
+  color: #e0e0e0;
+}
+
+/* Forgot Password *
+.forgot-link {
+  text-align: right;
+  margin-top: 0.6rem;
+  background: transparent; /* ✅ remove box *
+  box-shadow: none; 
+}
+
+.forgot-btn{
+  font-size: 0.9rem;
+  color: #fefefe;
+  text-decoration: underline;
+  background: none; /* ✅ remove background *
+  border: none;     /* ✅ ensure no border/box *
+  box-shadow: none; /* ✅ ensure no shadow *
+}
+
+/* ===== Login Button ===== *
+.login-btn {
+  width: 70%;
+  padding: 0.8rem;
+  background-color: rgba(7, 94, 99, 0.9); /* Transparent teal *
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: rgba(5, 73, 77, 0.9);
+}
+
+/* ===== Register Text ===== *
+.register-text {
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  color: #f5f5f5;
+}
+
+.register-link {
+  text-decoration: underline;
+  font-weight: 500;
+  color: #fff;
+}
+
+.register-link:hover {
+  color: #d9d9d9;
+}
+
+/* ===== Responsive ===== *
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+  }
+
+  .left-section {
+    height: 40%;
+  }
+
+  .right-section {
+    height: 60%;
+  }
+
+  .illustration {
+    max-width: 70%;
+  }
+} */
+
+
+
 /* ===== Global Layout ===== */
 .login-container {
   display: flex;
@@ -21,104 +187,94 @@
   animation: float 6s ease-in-out infinite;
 }
 
-/* Floating animation for illustration */
+/* Floating animation */
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-/* ===== Right Section ===== */
+/* ===== Right Section (shift everything right) ===== */
 .right-section {
   flex: 1;
   display: flex;
   align-items: center;
-  justify-content: center;
-  /* ❌ Remove background color */
-  background: transparent;
-  padding: -10%;
-  left: 100%;;
+  justify-content: flex-start;      /* from center → push a bit right */
+  padding-left: 16%;                 /* move everything more right */
 }
 
 /* ===== Form Container ===== */
 .form-container {
-  width: 90%;
-  max-width: 400px;
-  padding: 2rem;
-  border-radius: 12px;
-  background: none;   /* ❌ remove background */
-  box-shadow: none;   /* ❌ remove shadow */
-  color: #f0f0f0;    
+  width: 100%;
+  max-width: 380px;                 /* consistent form width */
+  margin-left: 10%;                 /* extra shift to the right */
+  padding: 2rem 1rem;
+  color: #ffffff;
 }
 
 .form-title {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: bold;
-  margin-bottom: 1.5rem;
-  text-align: center;
+  margin-bottom: 1.8rem;
+  text-align: center;                 /* matches reference design */
 }
 
 /* ===== Input Fields ===== */
 .input-group {
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
 }
 
 .input-group label {
-  display: block;
   font-weight: bold;
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-  color: #f0f0f0;
+  font-size: 1.3rem;
+  color: white;
+  margin-bottom: 1rem;
 }
 
 .input-box {
-  width: 70%;
-  padding: 0.6rem;
-  border-radius: 0.5rem;
+  width: 100%;                      /* full width input */
+  padding: 0.8rem;
+  border-radius: 8px;
   border: none;
-  outline: none;
-  background-color: rgba(255, 255, 255, 0.25); /* Slight transparency */
+  background-color: #47a4b4;
   color: white;
-  font-size: 0.95rem;
-}
+  font-size: 1rem;
+  outline: none !important;
+  border: none !important;
+  font-weight: bold;
+  }
 
 .input-box::placeholder {
   color: #e0e0e0;
 }
 
-/* Forgot Password */
+/* ===== Forgot Password (clean alignment) ===== */
 .forgot-link {
+  width: 100%;
   text-align: right;
-  margin-top: 0.6rem;
-  background: transparent; /* ✅ remove box */
-  box-shadow: none; 
+  margin-top: 1.5rem;
 }
 
-.forgot-btn{
+.forgot-btn {
   font-size: 0.9rem;
   color: #fefefe;
   text-decoration: underline;
-  background: none; /* ✅ remove background */
-  border: none;     /* ✅ ensure no border/box */
-  box-shadow: none; /* ✅ ensure no shadow */
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 /* ===== Login Button ===== */
 .login-btn {
-  width: 70%;
-  padding: 0.8rem;
-  background-color: rgba(7, 94, 99, 0.9); /* Transparent teal */
+  width: 108%;                       /* full width like reference */
+  padding: 0.85rem;
+  background-color: rgba(7, 94, 99, 0.9);
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 8px;
   font-size: 1rem;
   font-weight: bold;
   color: white;
   cursor: pointer;
   margin-top: 1rem;
-  transition: background-color 0.3s ease;
 }
 
 .login-btn:hover {
@@ -127,16 +283,16 @@
 
 /* ===== Register Text ===== */
 .register-text {
-  text-align: center;
-  font-size: 0.9rem;
+  text-align: center;                 /* same as reference */
+  font-size: 0.95rem;
   margin-top: 1rem;
-  color: #f5f5f5;
+  color: white;
 }
 
 .register-link {
   text-decoration: underline;
   font-weight: 500;
-  color: #fff;
+  color: white;
 }
 
 .register-link:hover {
@@ -149,15 +305,26 @@
     flex-direction: column;
   }
 
-  .left-section {
-    height: 40%;
+  .left-section { height: 40%; }
+  .right-section { 
+    height: 60%; 
+    justify-content: center;
+    padding-left: 0;
+    margin-left: 0;
   }
 
-  .right-section {
-    height: 60%;
-  }
-
-  .illustration {
-    max-width: 70%;
+  .form-container {
+    margin-left: 0;
+    max-width: 90%;
   }
 }
+/* Position logo on top-left for login page only
+.login-page-logo {
+  position: absolute;
+  top: 30px;
+  left: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 10;
+} */

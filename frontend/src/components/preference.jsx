@@ -63,8 +63,12 @@ export default function Preference() {
             className="input"
             value={preferences.groupType}
             onChange={handleChange}
+            
           >
-            <option value="">Select Preference</option>
+             <option value="" disabled hidden>
+                Select Preference
+              </option>
+            {/* <option value="">Select Preference</option> */}
             <option value="solo">Solo Traveler</option>
             <option value="couple">Couple</option>
             <option value="friends">Friends Group</option>
@@ -82,7 +86,10 @@ export default function Preference() {
             value={preferences.tripType}
             onChange={handleChange}
           >
-            <option value="">Select Preference</option>
+            <option value="" disabled hidden>
+                Select Preference
+              </option>
+            {/* <option value="">Select Preference</option> */}
             <option value="adventure">Adventure</option>
             <option value="romantic">Romantic</option>
             <option value="relaxation">Relaxation</option>
@@ -104,7 +111,10 @@ export default function Preference() {
             value={preferences.transportation}
             onChange={handleChange}
           >
-            <option value="">Select Preference</option>
+            <option value="" disabled hidden>
+                Select Preference
+              </option>
+            {/* <option value="">Select Preference</option> */}
             <option value="flight">Flight</option>
             <option value="train">Train</option>
             <option value="bus">Bus</option>
@@ -123,7 +133,10 @@ export default function Preference() {
             value={preferences.accommodation}
             onChange={handleChange}
           >
-            <option value="">Select Preference</option>
+            <option value="" disabled hidden>
+                Select Preference
+              </option>
+            {/* <option value="">Select Preference</option> */}
             <option value="budget-hotel">Budget Hotel</option>
             <option value="midrange-hotel">Mid-range Hotel</option>
             <option value="luxury-hotel">Luxury Hotel</option>

@@ -179,3 +179,11 @@
   justify-items: center;
   margin-top: 30px;
 }
+.my-trips-container {
+  width: 100%;
+  min-height: 100vh;
+  background: #ffffff !important;   /* FULL WHITE — fixes grey box */
+  padding: 20px;
+  box-sizing: border-box;
+}
+

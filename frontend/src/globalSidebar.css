@@ -69,11 +69,16 @@
   transition: background-color 0.3s, color 0.3s;
 }
 
-.nav-list li a:hover,
-.nav-list li a.active {
+.nav-list li a:hover {
   background-color: #d0e8e6;
   color: #00796b;
 }
+.nav-list li a.active {
+  background-color: #d0e8e6;
+  color: #6c757d;
+}
+
+
 
 /* Main content container */
 .app-main {
@@ -115,4 +120,8 @@
   flex-direction: column;
   justify-content: flex-start;   /* move nav items UP */
   padding-top: 10px;             /* adjust as you like */
+}
+.logo-placeholder {
+  height: 80px;     /* same as logo height + margin */
+  margin-bottom: 30px; 
 }

@@ -42,6 +42,12 @@ const Login = () => {
   return (
     <div className="login-container">
       <div className="left-section">
+        {/* SAME LOGO YOU USE IN SIDEBAR
+        <div className="logo login-page-logo">
+          <img src="/LOGO.jpg" alt="logo" className="logo-img" />
+          <span className="logo-text">TravelZen AI</span>
+        </div> */}
+
         <img
           src="/Frame_227.png"
           alt="Travel Illustration"
