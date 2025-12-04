@@ -56,6 +56,7 @@
 
 // export default Layout;
 
+
 import React from "react";
 import { Outlet, NavLink, useNavigate, useLocation } from "react-router-dom";
 import "../globalSidebar.css";
@@ -64,7 +65,6 @@ const Layout = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Pages where logo should NOT appear
   const hideLogoRoutes = [
     "/home",
     "/MyTrip",
@@ -75,7 +75,6 @@ const Layout = () => {
     "/editpreferences"
   ];
 
-  // Check if current path starts with one of these
   const hideLogo = hideLogoRoutes.some(route =>
     location.pathname.startsWith(route)
   );
@@ -87,8 +86,10 @@ const Layout = () => {
 
   return (
     <div className="app-layout">
+
       <aside className="app-sidebar">
-        {/* Conditional Logo / Placeholder */}
+
+        {/* Logo or Placeholder */}
         {hideLogo ? (
           <div className="logo-placeholder"></div>
         ) : (
@@ -97,44 +98,49 @@ const Layout = () => {
             <span className="logo-text">TravelZen AI</span>
           </div>
         )}
+
         {/* Navigation */}
         <div className="nav-wrapper">
-          <ul className="nav-list">
-            <li>
+          <ul className="sidebar-menu">
+            <li className="sidebar-item nav-home">
               <NavLink to="/home">Home</NavLink>
             </li>
-            <li>
+
+            <li className="sidebar-item nav-mytrips">
               <NavLink to="/MyTrip">My Trips</NavLink>
             </li>
-            <li>
+
+            <li className="sidebar-item nav-memories">
               <NavLink to="/memories">Memories</NavLink>
             </li>
-            <li>
+
+            <li className="sidebar-item nav-journal">
               <NavLink to="/journal">Journal</NavLink>
             </li>
-            <li>
+
+            <li className="sidebar-item nav-budget">
               <NavLink to="/budget">Budget</NavLink>
             </li>
-            <li>
+
+            <li className="sidebar-item nav-editpreferences">
               <NavLink to="/editpreferences">Edit Preferences</NavLink>
             </li>
-            <li>
+
+            <li className="sidebar-item nav-profile">
               <NavLink to="/profile">Profile</NavLink>
             </li>
+
+            {/* LOGOUT — identical design */}
+            <li className="sidebar-item nav-logout" onClick={handleLogout}>
+              <span>Logout</span>
+            </li>
           </ul>
-
-          <button onClick={handleLogout} className="nav-item logout-item">
-            Logout
-          </button>
         </div>
-
       </aside>
-
       <main className="app-main">
         <Outlet />
       </main>
     </div>
   );
 };
-
 export default Layout;
