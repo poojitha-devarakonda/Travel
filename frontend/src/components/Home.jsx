@@ -607,6 +607,8 @@ const Home = () => {
         const res = await fetch(`http://localhost:5000/api/itineraries/${id}`);
         const data = await res.json();
         setTrip(data);
+        setSpentItems({});
+        localStorage.removeItem("spentItems");
       } catch (err) {
         console.error("Failed to load saved itinerary:", err);
       } finally {
@@ -630,6 +632,9 @@ const Home = () => {
 
     const generate = async () => {
       try {
+        // 🔥 Reset spent items when generating a NEW itinerary
+        localStorage.setItem("spentItems", JSON.stringify({}));
+        setSpentItems({});
         const response = await fetch("http://localhost:5000/api/generate-itinerary", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -687,16 +692,21 @@ const Home = () => {
   // ================================
   // ⭐ FUN LOADING ANIMATION
   // ================================
- if (loading) {
+  if (loading) {
   return (
-    <div className="fun-loading">
-      <div className="circle-container">
-        <div className="plane"></div>
+    <div className="fun-loading-wrapper">
+      <div className="sparkle-bg"></div>
+
+      <div className="fun-loading">
+        <div className="circle-loader">
+          <div className="circle-bar"></div>
+        </div>
+        <p>✨ Generating your perfect itinerary...</p>
       </div>
-      <p>✨ Generating your perfect trip...</p>
     </div>
   );
 }
+
 
 
   if (!trip) return <div className="error">❌ Could not load itinerary.</div>;
@@ -737,7 +747,7 @@ const Home = () => {
 
           <section className="itinerary-section">
             <h2>🚗 Transport</h2>
-            <ul className="list">
+            <ul className="list checklist-list">
               <ChecklistItem
                 id="transport"
                 text={trip.transport?.detail}
@@ -748,7 +758,7 @@ const Home = () => {
 
           <section className="itinerary-section">
             <h2>🏨 Stays</h2>
-            <ul className="list">
+           <ul className="list checklist-list">
               {trip.stays?.map((s, i) => (
                 <ChecklistItem id={`stay-${i}`} key={i} text={s.detail} price={s.price} />
               ))}

@@ -23,13 +23,13 @@
 }
 
 .new-note:hover {
-  border-color: #ff758c;
-  background-color: #fff0f5;
+  border-color: #8b8475;
+  background-color: #f9f3f3;
 }
 
 .plus-icon {
   font-size: 48px;
-  color: #ff758c;
+  color: #c08a17;
 }
 
 .notes-preview {
@@ -48,7 +48,7 @@
 }
 
 .note-preview-card:hover {
-  background: #ffe6f0;
+  background: #fcf0c3;
 }
 
 /* --- Editor View --- */
@@ -72,7 +72,7 @@
   position: fixed; /* fix it to viewport instead of relative to editor */
   top: 20px;       /* distance from top of page */
   left: 300px;      /* distance from left of page */
-  background-color: #ffe6f0;
+  background-color: #00796b;
   color: #333;
   border: none;
   padding: 8px 12px;
@@ -83,7 +83,7 @@
 }
 
 .back-btn:hover {
-  background-color: #aaa;
+  background-color: #004d40;
 }
 
 
@@ -110,7 +110,7 @@
   margin-top: 15px;
   align-self: flex-end;
   padding: 10px 20px;
-  background-color: #ff758c;
+  background-color: #00796b;
   color: white;
   border: none;
   border-radius: 8px;
@@ -119,7 +119,7 @@
 }
 
 .save-note-btn:hover {
-  background-color: #ff5a7a;
+  background-color: #004d40;
 }
 .note-preview-card {
   position: relative;

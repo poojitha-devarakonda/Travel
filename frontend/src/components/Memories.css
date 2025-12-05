@@ -50,7 +50,7 @@
   padding: 10px 15px;
   border: none;
   border-radius: 10px;
-  background-color: #0077ff;
+  background-color: #00796b;
   color: white;
   cursor: pointer;
   font-weight: 600;
@@ -58,7 +58,7 @@
 }
 
 .add-album button:hover {
-  background-color: #005ecc;
+  background-color: #004d40;
 }
 
 /* Album Grid */
