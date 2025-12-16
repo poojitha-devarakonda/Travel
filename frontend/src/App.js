@@ -64,6 +64,7 @@ import Profile from "./components/Profile.jsx";
 import EditPreference from "./components/editpreference.jsx";
 import MyTrips from "./components/MyTrips.jsx";
 import ItineraryView from "./components/ItineraryView.jsx";
+import ForgotPassword from "./components/ForgotPassword.jsx";
 
 const LogoWrapper = ({ children }) => {
   const location = useLocation();
@@ -101,6 +102,10 @@ function App() {
 
           {/* Register Page */}
           <Route path="/register" element={<RegisterPage />} />
+          
+          {/* ForgotPassword */}
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+
 
           {/* Trip Details */}
           <Route path="/tripdetails" element={<TripDetails />} />

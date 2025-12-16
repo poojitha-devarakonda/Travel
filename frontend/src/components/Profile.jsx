@@ -1,134 +1,28 @@
+
 // import React, { useEffect, useState } from "react";
 // import "./Profile.css";
 
-// const Profile = () => {
-//   const [user, setUser] = useState({
-//     name: "",
-//     email: "",
-//     password: "",
-//   });
-//   const [isEditing, setIsEditing] = useState(false);
-
-//   // Fetch user profile details
-//   useEffect(() => {
-//     const fetchProfile = async () => {
-//       try {
-//         const response = await fetch("http://localhost:5000/api/user/profile", {
-//           method: "GET",
-//           headers: {
-//             "Content-Type": "application/json",
-//             Authorization: `Bearer ${localStorage.getItem("token")}`,
-//           },
-//         });
-
-//         if (!response.ok) throw new Error("Failed to fetch profile");
-
-//         const data = await response.json();
-//         setUser({
-//           name: data.name || "",
-//           email: data.email || "",
-//           password: "",
-//         });
-//       } catch (error) {
-//         console.error("Error fetching profile:", error);
-//       }
-//     };
-
-//     fetchProfile();
-//   }, []);
-
-//   const handleEditToggle = () => {
-//     setIsEditing(!isEditing);
-//   };
-
-//   const handleChange = (e) => {
-//     setUser({ ...user, [e.target.name]: e.target.value });
-//   };
-
-//   const handleSave = async () => {
-//     try {
-//       const response = await fetch("http://localhost:5000/api/user/profile", {
-//         method: "PUT",
-//         headers: {
-//           "Content-Type": "application/json",
-//           Authorization: `Bearer ${localStorage.getItem("token")}`,
-//         },
-//         body: JSON.stringify(user),
-//       });
-
-//       if (!response.ok) throw new Error("Failed to update profile");
-
-//       alert("Profile updated successfully!");
-//       setIsEditing(false);
-//     } catch (error) {
-//       console.error("Error saving profile:", error);
-//     }
-//   };
-
+// const isPasswordValid = (password) => {
 //   return (
-//     <div className="profile-container">
-//       <div className="profile-header">
-//         <h2>Your Profile</h2>
-//         <button className="edit-btn" onClick={handleEditToggle}>
-//           {isEditing ? "Cancel" : "Edit"}
-//         </button>
-//       </div>
-
-//       <div className="profile-field">
-//         <label>Your Name :</label>
-//         <input
-//           type="text"
-//           name="name"
-//           value={user.name}
-//           readOnly={!isEditing}
-//           onChange={handleChange}
-//         />
-//       </div>
-
-//       <div className="profile-field">
-//         <label>Your Email :</label>
-//         <input
-//           type="email"
-//           name="email"
-//           value={user.email}
-//           readOnly={!isEditing}
-//           onChange={handleChange}
-//         />
-//       </div>
-
-//       <div className="profile-field">
-//         <label>Your Password :</label>
-//         <input
-//           type="password"
-//           name="password"
-//           value={user.password}
-//           readOnly={!isEditing}
-//           onChange={handleChange}
-//         />
-//       </div>
-
-//       {isEditing && (
-//         <button className="save-btn" onClick={handleSave}>
-//           Save
-//         </button>
-//       )}
-//     </div>
+//     password.length >= 4 &&
+//     /[A-Z]/.test(password) &&
+//     /[a-z]/.test(password) &&
+//     /[0-9]/.test(password) &&
+//     /[@$!%*?&]/.test(password)
 //   );
 // };
 
-// export default Profile;
-
-// import React, { useEffect, useState } from "react";
-// import "./Profile.css";
-
 // const Profile = () => {
 //   const [user, setUser] = useState({
-//     name: "",
+//     username: "",   // ← changed from name
 //     email: "",
 //     password: "",
 //     newPassword: "",
 //     confirmPassword: "",
 //   });
+// <p style={{ fontSize: "0.8rem", color: "#ddd" }}>
+//   Password must contain uppercase, lowercase, number, special character (min 4)
+// </p>
 
 //   const [isEditing, setIsEditing] = useState(false);
 
@@ -148,7 +42,7 @@
 
 //         setUser((prev) => ({
 //           ...prev,
-//           name: data.name || "",
+//           username: data.username || "",   // ← changed
 //           email: data.email || "",
 //         }));
 //       } catch (err) {
@@ -166,61 +60,69 @@
 //   const handleChange = (e) => {
 //     setUser({ ...user, [e.target.name]: e.target.value });
 //   };
+//   if (user.newPassword) {
+//   if (!isPasswordValid(user.newPassword)) {
+//     alert(
+//       "Password must be at least 4 characters and include uppercase, lowercase, number, and special character"
+//     );
+//     return;
+//   }
+
+//   if (user.newPassword !== user.confirmPassword) {
+//     alert("New password and confirm password do not match");
+//     return;
+//   }
+// }
+
 
 //   const handleSave = async () => {
-//   try {
-//     const response = await fetch("http://localhost:5000/api/user/profile", {
-//       method: "PUT",
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${localStorage.getItem("token")}`,
-//       },
-//       body: JSON.stringify({
-//         name: user.name,
-//         email: user.email,
-//         password: user.password,
-//         newPassword: user.newPassword,
-//       }),
-//     });
+//     try {
+//       const response = await fetch("http://localhost:5000/api/user/profile", {
+//         method: "PUT",
+//         headers: {
+//           "Content-Type": "application/json",
+//           Authorization: `Bearer ${localStorage.getItem("token")}`,
+//         },
+//         body: JSON.stringify({
+//           username: user.username,   // ← changed
+//           email: user.email,
+//           password: user.password,
+//           newPassword: user.newPassword,
+//         }),
+//       });
 
-//     const result = await response.json();
+//       const result = await response.json();
 
-//     if (!response.ok) {
-//       alert(result.message || "Failed to update");
-//       return;
+//       if (!response.ok) {
+//         alert(result.message || "Failed to update");
+//         return;
+//       }
+
+//       alert("Profile updated successfully!");
+
+//       // refresh UI
+//       setUser({
+//         username: result.user.username,  // ← changed
+//         email: result.user.email,
+//         password: "",
+//         newPassword: "",
+//         confirmPassword: "",
+//       });
+
+//       setIsEditing(false);
+//     } catch (error) {
+//       console.error("Error saving profile:", error);
+//       alert("Error updating profile");
 //     }
-
-//     alert("Profile updated successfully!");
-
-//     // refresh UI
-//     setUser({
-//       name: result.user.name,
-//       email: result.user.email,
-//       password: "",
-//       newPassword: "",
-//       confirmPassword: "",
-//     });
-
-//     setIsEditing(false);
-//   } catch (error) {
-//     console.error("Error saving profile:", error);
-//     alert("Error updating profile");
-//   }
-// };
-
+//   };
 
 //   return (
 //     <div className="profile-wrapper">
-
-//       {/* Profile Card */}
 //       <div className="profile-card">
-
-//         {/* Left profile icon */}
 //         <div className="profile-avatar">
 //           <img src="/L.png" alt="profile" />
 //         </div>
 
-//         {/* Content */}
 //         <div className="profile-content">
 //           <div className="profile-header">
 //             <h2>Your Profile</h2>
@@ -229,13 +131,13 @@
 //             </button>
 //           </div>
 
-//           {/* Name */}
+//           {/* Username */}
 //           <div className="profile-field">
 //             <label>Your Name :</label>
 //             <input
 //               type="text"
-//               name="name"
-//               value={user.name}
+//               name="username"     // ← changed
+//               value={user.username} // ← changed
 //               readOnly={!isEditing}
 //               onChange={handleChange}
 //             />
@@ -252,6 +154,7 @@
 //               onChange={handleChange}
 //             />
 //           </div>
+
 //           <div className="profile-field">
 //             <label>Your Password :</label>
 //             <input
@@ -263,8 +166,6 @@
 //             />
 //           </div>
 
-
-//           {/* Old Password */}
 //           {isEditing && (
 //             <div className="profile-field">
 //               <label>Current Password :</label>
@@ -277,7 +178,6 @@
 //             </div>
 //           )}
 
-//           {/* New Password */}
 //           {isEditing && (
 //             <div className="profile-field">
 //               <label>New Password :</label>
@@ -290,7 +190,6 @@
 //             </div>
 //           )}
 
-//           {/* Confirm Password */}
 //           {isEditing && (
 //             <div className="profile-field">
 //               <label>Confirm Password :</label>
@@ -303,7 +202,6 @@
 //             </div>
 //           )}
 
-//           {/* Save Button */}
 //           {isEditing && (
 //             <button className="save-btn" onClick={handleSave}>
 //               Save Changes
@@ -321,9 +219,20 @@
 import React, { useEffect, useState } from "react";
 import "./Profile.css";
 
+const isPasswordValid = (password) => {
+  if (!password) return false;
+  return (
+    password.length >= 4 &&
+    /[A-Z]/.test(password) &&
+    /[a-z]/.test(password) &&
+    /[0-9]/.test(password) &&
+    /[@$!%*?&]/.test(password)
+  );
+};
+
 const Profile = () => {
   const [user, setUser] = useState({
-    username: "",   // ← changed from name
+    username: "",
     email: "",
     password: "",
     newPassword: "",
@@ -332,7 +241,7 @@ const Profile = () => {
 
   const [isEditing, setIsEditing] = useState(false);
 
-  // Fetch user profile
+  // Fetch profile
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -344,11 +253,11 @@ const Profile = () => {
         });
 
         if (!res.ok) throw new Error("Failed to fetch profile");
-        const data = await res.json();
 
+        const data = await res.json();
         setUser((prev) => ({
           ...prev,
-          username: data.username || "",   // ← changed
+          username: data.username || "",
           email: data.email || "",
         }));
       } catch (err) {
@@ -368,6 +277,21 @@ const Profile = () => {
   };
 
   const handleSave = async () => {
+    // ✅ Password validation ONLY on save
+    if (user.newPassword) {
+      if (!isPasswordValid(user.newPassword)) {
+        alert(
+          "Password must be at least 4 characters and include uppercase, lowercase, number, and special character"
+        );
+        return;
+      }
+
+      if (user.newPassword !== user.confirmPassword) {
+        alert("New password and confirm password do not match");
+        return;
+      }
+    }
+
     try {
       const response = await fetch("http://localhost:5000/api/user/profile", {
         method: "PUT",
@@ -376,7 +300,7 @@ const Profile = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify({
-          username: user.username,   // ← changed
+          username: user.username,
           email: user.email,
           password: user.password,
           newPassword: user.newPassword,
@@ -392,9 +316,8 @@ const Profile = () => {
 
       alert("Profile updated successfully!");
 
-      // refresh UI
       setUser({
-        username: result.user.username,  // ← changed
+        username: result.user.username,
         email: result.user.email,
         password: "",
         newPassword: "",
@@ -428,8 +351,8 @@ const Profile = () => {
             <label>Your Name :</label>
             <input
               type="text"
-              name="username"     // ← changed
-              value={user.username} // ← changed
+              name="username"
+              value={user.username}
               readOnly={!isEditing}
               onChange={handleChange}
             />
@@ -447,17 +370,7 @@ const Profile = () => {
             />
           </div>
 
-          <div className="profile-field">
-            <label>Your Password :</label>
-            <input
-              type="password"
-              name="password"
-              value={user.password}
-              readOnly={!isEditing}
-              onChange={handleChange}
-            />
-          </div>
-
+          {/* Current Password */}
           {isEditing && (
             <div className="profile-field">
               <label>Current Password :</label>
@@ -470,6 +383,7 @@ const Profile = () => {
             </div>
           )}
 
+          {/* New Password */}
           {isEditing && (
             <div className="profile-field">
               <label>New Password :</label>
@@ -479,9 +393,14 @@ const Profile = () => {
                 value={user.newPassword}
                 onChange={handleChange}
               />
+              <p style={{ fontSize: "0.8rem", color: "#777" }}>
+                Password must contain uppercase, lowercase, number, special
+                character (min 4)
+              </p>
             </div>
           )}
 
+          {/* Confirm Password */}
           {isEditing && (
             <div className="profile-field">
               <label>Confirm Password :</label>

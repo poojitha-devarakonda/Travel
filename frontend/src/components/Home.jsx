@@ -565,6 +565,8 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
 import "./Home.css";
 
+
+
 const Home = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -691,18 +693,46 @@ const Home = () => {
 
   // ================================
   // ⭐ FUN LOADING ANIMATION
-  // ================================
   if (loading) {
   return (
-    <div className="fun-loading-wrapper">
-      <div className="sparkle-bg"></div>
+    <div className="loading-overlay">
 
-      <div className="fun-loading">
-        <div className="circle-loader">
-          <div className="circle-bar"></div>
-        </div>
-        <p>✨ Generating your perfect itinerary...</p>
+      {/* SPARKLES */}
+      <div className="sparkles">
+        {Array.from({ length: 120 }).map((_, i) => {
+          const shapes = ["★", "✦", "✧", "◆", "●"];
+          const shape = shapes[Math.floor(Math.random() * shapes.length)];
+
+          return (
+            <span
+              key={i}
+              className="sparkle"
+              style={{
+                left: Math.random() * 100 + "vw",
+                top: -(Math.random() * 50) + "px",
+                animationDelay: Math.random() * 4 + "s",
+                fontSize: Math.random() * 14 + 10 + "px",
+                color: [
+                  "#FFB3BA", // pastel pink
+                  "#FFDFBA", // pastel peach
+                  "#FFFFBA", // pastel yellow
+                  "#Baffc9", // pastel green
+                  "#bae1ff", // pastel blue
+                ][Math.floor(Math.random() * 5)]
+              }}
+            >
+              {shape}
+            </span>
+          );
+        })}
       </div>
+
+      {/* CENTER BOX */}
+      <div className="loading-box">
+      <div className="loading-circle">
+      </div>
+      <p className="loading-text">⭐ Generating your perfect itinerary...</p>
+    </div>
     </div>
   );
 }

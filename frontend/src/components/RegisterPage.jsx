@@ -2,6 +2,15 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import API from "../api"; // ✅ Import your axios instance
 import "./login.css";
+const isPasswordValid = (password) => {
+  return (
+    password.length >= 4 &&
+    /[A-Z]/.test(password) &&
+    /[a-z]/.test(password) &&
+    /[0-9]/.test(password) &&
+    /[@$!%*?&]/.test(password)
+  );
+};
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -13,16 +22,22 @@ const RegisterPage = () => {
   // ✅ Handle register with backend
   const handleRegister = async (e) => {
     e.preventDefault();
+    
+  if (!isPasswordValid(password)) {
+    setError(
+      "Password must be at least 4 characters and include uppercase, lowercase, number, and special character"
+    );
+    return;
+  }
     try {
       const response = await API.post("/auth/register", {
         username: name,
         email,
         password,
       });
-
       if (response.status === 201) {
-        alert("Registered successfully!");
-        navigate("/landing"); // redirect after success
+        //alert("Registered successfully!");
+        navigate("/"); // redirect after success
       }
     } catch (err) {
       console.error("Registration error:", err);
@@ -89,8 +104,10 @@ const RegisterPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
+              <p style={{ fontSize: "0.8rem", color: "#ddd" }}>
+                Password must contain uppercase, lowercase, number, special character (min 4)
+              </p>
             </div>
-
             {/* Error Message */}
             {error && <p style={{ color: "red" }}>{error}</p>}
 

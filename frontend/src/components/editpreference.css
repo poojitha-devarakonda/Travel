@@ -227,6 +227,7 @@ select:focus {
   padding: 10px 10px 0 10px;
   display: flex;
   justify-content: flex-start;
+  position: relative;
 }
 
 /* Logout section */
@@ -251,15 +252,24 @@ select:focus {
 /* Main content */
 .edit-preference-container .main-content {
   flex: 1;
-  padding: 40px;
-  background-color: #cdece6;
-
-  border-radius: 12px;
   width: 100%;
+  height: 100%;
+  padding: 40px;
+
+  /* 🔥 Full-page card look */
+  background-color: #cdece6;
+  border-radius: 0;
+
+  /* remove any iframe-like look */
   max-width: none;
   margin: 0;
   box-shadow: none;
+
+  /* ensures the area being blurred is ONLY the content, not sidebar */
+  position: relative;
+  z-index: 1;
 }
+
 
 .edit-preference-container .main-content h2 {
   margin-bottom: 30px;
@@ -350,39 +360,74 @@ select:focus {
 .edit-preference-container .save-btn:hover {
   background-color: #004d40;
 }
+/* ========================================================= */
+/* ✨ MAGIC LOADING SCREEN (Matches Home Page)               */
+/* ========================================================= */
 
-/* Loading overlay
-.edit-preference-container .loading-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(3px);
+.loading-overlay {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(6px);
+  background: rgba(255, 255, 255, 0.25);
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  overflow: hidden;
   z-index: 9999;
-} */
-/* 
-.edit-preference-container .loader {
-  width: 40px;
-  height: 40px;
-  border: 4px solid #ccc;
-  border-top-color: #2ecc71;
-  border-radius: 50%;
-  animation: spin 0.7s linear infinite;
 }
 
-@keyframes spin {
+/* SPARKLES */
+.sparkles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sparkle {
+  position: absolute;
+  animation: sparkleFall 5s linear infinite;
+  opacity: 0.9;
+  font-weight: 700;
+}
+
+@keyframes sparkleFall {
+  0% { transform: translateY(-10vh) rotate(0deg); }
+  100% { transform: translateY(120vh) rotate(360deg); }
+}
+
+/* CENTER BOX */
+.loader-container {
+  text-align: center;
+  z-index: 10;
+}
+
+/* Rotating pastel circle */
+.rotating-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  border: 6px solid transparent;
+
+  border-top-color: #FFB3BA;
+  border-right-color: #FFDFBA;
+  border-bottom-color: #BAFFC9;
+  border-left-color: #BAE1FF;
+
+  animation: rotateCircle 1.8s linear infinite;
+}
+
+@keyframes rotateCircle {
+  from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-.edit-preference-container .loading-overlay p {
-  margin-top: 12px;
-  font-size: 16px;
-  color: #333;
+/* loading text */
+.loading-text {
+  font-size: 22px;
+  font-weight: 600;
+  color: #2e7d32;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.12);
 }
- */

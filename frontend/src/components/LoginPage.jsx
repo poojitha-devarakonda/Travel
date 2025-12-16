@@ -89,7 +89,7 @@ const Login = () => {
                 <button
                   type="button"
                   className="forgot-btn"
-                  onClick={(e) => e.preventDefault()}
+                  onClick={(e) => navigate("/forgot-password")}
                 >
                   Forget Password?
                 </button>

@@ -46,7 +46,7 @@ const generateItinerary = async (req, res) => {
   const { tripId, destinations, startDate, endDate, budget, preferences } = req.body;
 
   const prompt = `
-You are an AI travel planner specializing in Indian travel.
+You are an AI travel planner specializing in International travel.
 Generate a detailed, realistic itinerary in JSON format.
 
 User Details:

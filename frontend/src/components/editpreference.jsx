@@ -292,16 +292,52 @@ const EditPreference = () => {
 
   return (
     <div className="edit-preference-container">
+        <div className="content-blur-area">
       <main className="main-content">
         <h2>Edit Preferences</h2>
 
         {/* 🔥 Loading Overlay */}
         {loading && (
-          <div className="loading-overlay">
-            <div className="loader"></div>
-            <p>Updating preferences and regenerating itinerary...</p>
-          </div>
-        )}
+  <div className="loading-overlay">
+
+    {/* SPARKLES */}
+    <div className="sparkles">
+      {Array.from({ length: 120 }).map((_, i) => {
+        const shapes = ["★", "✦", "✧", "◆", "●"];
+        const shape = shapes[Math.floor(Math.random() * shapes.length)];
+
+        return (
+          <span
+            key={i}
+            className="sparkle"
+            style={{
+              left: Math.random() * 100 + "vw",
+              top: -(Math.random() * 50) + "px",
+              animationDelay: Math.random() * 4 + "s",
+              fontSize: Math.random() * 14 + 10 + "px",
+              color: [
+                "#FFB3BA",
+                "#FFDFBA",
+                "#FFFFBA",
+                "#BAFFC9",
+                "#BAE1FF",
+              ][Math.floor(Math.random() * 5)]
+            }}
+          >
+            {shape}
+          </span>
+        );
+      })}
+    </div>
+
+    {/* CENTER LOADING CIRCLE */}
+    <div className="loader-container">
+      <div className="rotating-circle"></div>
+      <p className="loading-text">Updating your preferences...</p>
+    </div>
+  </div>
+)}
+
 
         {/* Destination */}
         <div className="form-group destination">
@@ -444,6 +480,7 @@ const EditPreference = () => {
           Save Changes & Regenerate Itinerary
         </button>
       </main>
+      </div>
     </div>
   );
 };
